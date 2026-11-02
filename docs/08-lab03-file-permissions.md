@@ -59,19 +59,19 @@ Full Control permissions for Administrators and SYSTEM were preserved.
 
 ### Initial Permissions and Incident
 
-![Initial NTFS permissions](../screenshots/lab03/lab03-04-permission-inheritance.png)
+![Initial NTFS permissions](../screenshots/lab03-04-permission-inheritance.png)
 
-![Access Denied](../screenshots/lab03/lab03-05-access-denied.png)
+![Access Denied](../screenshots/lab03-05-access-denied.png)
 
 ### Troubleshooting and Resolution
 
-![Permission configuration error](../screenshots/lab03/lab03-06-permission-configuration-error.png)
+![Permission configuration error](../screenshots/lab03-06-permission-configuration-error.png)
 
-![ACL investigation](../screenshots/lab03/lab03-08-icacls-investigation.png)
+![ACL investigation](../screenshots/lab03-08-icacls-investigation.png)
 
-![Updated permissions](../screenshots/lab03/lab03-09-icacls-permission-fix.png)
+![Updated permissions](../screenshots/lab03-09-icacls-permission-fix.png)
 
-![Read-only verification](../screenshots/lab03/lab03-10-read-only-verification.png)
+![Read-only verification](../screenshots/lab03-10-read-only-verification.png)
 
 ## 7. Skills Demonstrated
 

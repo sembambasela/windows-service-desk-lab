@@ -1,0 +1,74 @@
+# INC-004 — Windows Search Service Interruption
+
+**Incident ID:** INC-004  
+**Status:** Resolved  
+**Priority:** Medium (Simulated)  
+**Category:** Windows Services / Service Interruption  
+**Affected System:** WIN11-CLIENT01  
+**Operating System:** Windows 11 Pro  
+**Affected Service:** Windows Search (`WSearch`)  
+**Date:** November 2, 2026
+
+## 1. Incident Description
+
+A controlled Windows Search service interruption was simulated to investigate service availability, examine Windows event logs, and practice service recovery procedures.
+
+## 2. Investigation
+
+- Verified that Windows Search was initially running with the startup type set to **Automatic (Delayed Start)**.
+- Intentionally stopped the service using the Windows Services console.
+- Investigated the System log in Event Viewer using the Service Control Manager event source.
+- Identified an earlier **Event ID 7000**, indicating that Windows Search had previously failed to start because it did not respond within the required time.
+- Confirmed that the earlier startup timeout was separate from the simulated interruption.
+
+## 3. Resolution
+
+Restarted Windows Search through the Services console.
+
+Verified the service status using PowerShell:
+
+```powershell
+Get-Service -Name WSearch
+```
+
+**Result:**
+
+```text
+Status   Name      DisplayName
+------   ----      -----------
+Running  WSearch   Windows Search
+```
+
+## 4. Root Cause
+
+**Simulated incident:** The service interruption was caused by intentionally stopping Windows Search for troubleshooting practice.
+
+**Historical Event ID 7000:** The underlying cause of the earlier startup timeout was not determined.
+
+## 5. Verification
+
+| Verification | Result |
+|---|---|
+| Initial service status confirmed | Passed |
+| Service interruption reproduced | Passed |
+| Event Viewer investigation completed | Passed |
+| Service successfully restarted | Passed |
+| PowerShell confirmed running status | Passed |
+
+## 6. Supporting Evidence
+
+![Initial service configuration](../screenshots/lab04-01-service-baseline.png)
+
+![Service stopped](../screenshots/lab04-02-service-stopped.png)
+
+![Event ID 7000](../screenshots/lab04-03-eventviewer-error-7000.png)
+
+![Service restored](../screenshots/lab04-04-service-restored.png)
+
+## 7. Incident Closure
+
+**Resolution Status:** Resolved
+
+Windows Search was successfully restored to its running state, and service recovery was verified through PowerShell.
+
+**Skills Demonstrated:** Windows Services, Event Viewer, Service Control Manager, PowerShell, incident investigation, and service recovery.
