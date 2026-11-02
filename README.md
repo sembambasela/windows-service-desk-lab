@@ -1,39 +1,106 @@
 # Windows IT Service Desk Home Lab
 
-A hands-on Windows 11 ARM64 service desk portfolio project, using Oracle VirtualBox on an Apple M1 MacBook. Exercises cover workstation diagnostics, account provisioning, troubleshooting, and evidence-based ticket documentation.
+A hands-on IT Service Desk portfolio project focused on Windows 11 administration, troubleshooting, Identity and Access Management (IAM), and IT service request documentation.
 
-## Lab environment
+The project simulates real-world IT support scenarios using a Windows 11 Pro virtual machine running in Oracle VirtualBox.
 
-- Host: Apple M1 MacBook, macOS Sonoma 14.8.2, 8 GB unified RAM
-- Hypervisor: Oracle VirtualBox
-- VM name: `WIN11-CLIENT01` (VirtualBox); Windows hostname: `DESKTOP-0200R7P`
-- Guest: Windows 11 Pro ARM64, version 26H2, build 26300.9457
-- VM resources: 2 virtual CPUs, 4096 MB RAM, 80 GB virtual disk
-- EFI / Secure Boot enabled, TPM 2.0
-- Network: USB Ethernet adapter via NAT; **connectivity not working at last verification**
+## Lab Environment
 
-## Progress
-
-| Activity | Status |
+| Component | Configuration |
 |---|---|
-| VM setup and Windows installation | Completed |
+| Host | Apple M1 MacBook, macOS Sonoma 14.8.2 |
+| Hypervisor | Oracle VirtualBox |
+| Virtual Machine | WIN11-CLIENT01 |
+| Windows Hostname | DESKTOP-0200R7P |
+| Operating System | Windows 11 Pro ARM64, 26H2 |
+| Memory | 4 GB |
+| Processors | 2 vCPUs |
+| Storage | 80 GB |
+| Security | TPM 2.0, EFI, Secure Boot |
+
+## Project Progress
+
+| Lab / Activity | Status |
+|---|---|
+| Windows 11 VM Setup and Installation | Completed |
 | Lab 01 — Windows System Diagnostics | Completed |
-| Incident 001 — Network connectivity | Open |
-| Lab 02 — Local User Account Administration | Planned / instructions prepared |
+| Lab 02 — Local User Account Administration | Completed |
+| Lab 03 — File Permissions and Access Control | Planned |
+| INC-001 — Network Connectivity Troubleshooting | Open |
 
-## Repository guide
+## Completed Labs
 
-- `docs/01-lab-planning.md` — goals and lab scope
-- `docs/02-virtual-machine-setup.md` — virtual machine configuration
-- `docs/03-windows-installation.md` — Windows installation and offline OOBE
-- `docs/04-windows-configuration.md` — baseline Windows configuration
-- `docs/05-troubleshooting-labs.md` — incident troubleshooting journal
-- `docs/06-lab01-system-diagnostics.md` — completed diagnostic lab
-- `docs/07-lab02-user-account-administration.md` — user provisioning exercise (pending execution)
-- `incident-reports/INC-001-network-adapter.md` — network incident record
-- `incident-reports/SR-002-user-provisioning.md` — account provisioning service request
-- `screenshots/` — evidence captured during Lab 01
+### Lab 01 — Windows System Diagnostics
 
-## Safety and accuracy
+Performed baseline Windows workstation diagnostics using built-in administration tools.
 
-This is a personal lab, not a production environment. No passwords, license keys, or personal credentials should be committed. Findings marked pending or unresolved have not been verified as successful.
+**Skills demonstrated:**
+- Windows system information gathering
+- Command Prompt diagnostics
+- Windows service inspection
+- Operating system verification
+- Technical documentation
+
+[View Lab 01 Documentation](docs/06-lab01-system-diagnostics.md)
+
+### Lab 02 — Local User Account Administration
+
+Simulated a new employee onboarding request by provisioning and verifying a standard Windows user account.
+
+**Activities completed:**
+- Created local employee account `jdoe`
+- Verified membership in the Users security group
+- Confirmed absence of administrator group membership
+- Successfully tested account sign-in
+- Verified account identity using `whoami`
+- Inspected security groups using `whoami /groups`
+- Confirmed UAC required administrator credentials for elevation
+- Documented service request SR-002
+
+**Skills demonstrated:**
+- Identity and Access Management (IAM)
+- Windows user provisioning
+- Local security group administration
+- Principle of least privilege
+- User Account Control (UAC)
+- Service request resolution
+
+[View Lab 02 Documentation](docs/07-lab02-user-account-administration.md)
+
+## Incident and Service Request Tracking
+
+| Ticket | Description | Status |
+|---|---|---|
+| INC-001 | Windows network adapter connectivity issue | Open |
+| SR-002 | New employee account provisioning | Resolved |
+
+The network connectivity issue remains unresolved and is documented separately.
+
+## Repository Structure
+
+```text
+windows-service-desk-lab/
+├── README.md
+├── docs/
+│   ├── 01-lab-planning.md
+│   ├── 02-virtual-machine-setup.md
+│   ├── 03-windows-installation.md
+│   ├── 04-windows-configuration.md
+│   ├── 05-troubleshooting-labs.md
+│   ├── 06-lab01-system-diagnostics.md
+│   └── 07-lab02-user-account-administration.md
+├── incident-reports/
+│   ├── INC-001-network-adapter.md
+│   └── SR-002-user-provisioning.md
+└── screenshots/
+```
+
+## Next Steps
+
+**Lab 03 — File Permissions and Access Control**
+
+Simulate file access requests and troubleshoot NTFS permission issues using standard Windows user accounts.
+
+## Security Considerations
+
+All activities are performed in an isolated learning environment. No real employee credentials, passwords, or sensitive organizational information are included in this repository.
