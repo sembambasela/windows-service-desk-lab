@@ -1,0 +1,12 @@
+# Keep secrets and large VM images out of Git
+*.vdi
+*.vbox
+*.vbox-prev
+*.iso
+*.ova
+*.ovf
+*.vmdk
+*.vhd
+*.vhdx
+.env
+.DS_Store
