@@ -1,149 +1,90 @@
 # Windows IT Service Desk Home Lab
 
-A hands-on IT Service Desk portfolio project demonstrating practical experience in **Windows 11 administration, Identity and Access Management (IAM), NTFS file permissions, system diagnostics, and incident troubleshooting**.
+A hands-on IT Service Desk portfolio project demonstrating Windows 11 administration, troubleshooting, user account management, NTFS permissions, network diagnostics, and ITIL-aligned incident documentation.
 
-The project simulates real-world IT support scenarios using a Windows 11 Pro virtual machine running in Oracle VirtualBox.
-
-Each lab follows a structured Service Desk workflow: identifying an issue or request, investigating the environment, implementing a solution, verifying the results, and documenting the outcome.
+The project uses a virtualized Windows environment to simulate common IT support scenarios, investigate technical issues, implement solutions, and document verified results.
 
 ## Lab Environment
 
 | Component | Configuration |
 |---|---|
-| Host Machine | Apple M1 MacBook |
-| Host Operating System | macOS Sonoma 14.8.2 |
-| Hypervisor | Oracle VirtualBox |
+| Host | Apple M1 MacBook, macOS Sonoma 14.8.2 |
+| Hypervisor | Oracle VirtualBox 7.2.22 |
 | Virtual Machine | WIN11-CLIENT01 |
 | Windows Hostname | DESKTOP-0200R7P |
-| Guest Operating System | Windows 11 Pro ARM64, 26H2 |
-| Memory | 4 GB |
-| Processors | 2 vCPUs |
-| Storage | 80 GB |
-| Security | TPM 2.0, EFI, Secure Boot |
-| Administrative Account | LabAdmin_01 |
-| Standard User Account | jdoe |
+| Operating System | Windows 11 Pro ARM64 |
+| VM Resources | 2 vCPUs, 4 GB RAM, 80 GB virtual disk |
+| Network Configuration | NAT with VirtIO network adapter |
+| Network Driver | Red Hat VirtIO Ethernet Adapter (NetKVM) |
 
 ## Project Progress
 
+**5 of 5 practical labs completed.**
+
 | Lab | Description | Status |
 |---|---|---|
-| Environment Setup | Windows 11 VM installation and configuration | Completed |
-| Lab 01 | Windows System Diagnostics | Completed |
-| Lab 02 | Local User Account Administration | Completed |
-| Lab 03 | Windows File Permissions and Access Control | Completed |
-| Lab 04 | Windows Services and Event Viewer Troubleshooting | Planned |
-| Lab 05 | Network Connectivity and DNS Troubleshooting | Planned |
+| [Lab 01](docs/06-lab01-system-diagnostics.md) | Windows System Diagnostics | Completed |
+| [Lab 02](docs/07-lab02-user-account-administration.md) | Local User Account Administration | Completed |
+| [Lab 03](docs/08-lab03-file-permissions.md) | File Permissions and Access Control | Completed |
+| [Lab 04](docs/09-lab04-windows-services.md) | Windows Services and Event Viewer | Completed |
+| [Lab 05](docs/10-lab05-network-troubleshooting.md) | Network Connectivity and DNS Troubleshooting | Completed |
 
 ## Completed Labs
 
 ### Lab 01 — Windows System Diagnostics
 
-**Objective:** Inspect and document the configuration and operational status of a Windows 11 workstation.
+Collected operating system information, identified the computer hostname and current user, and examined Windows services and network configuration.
 
-Activities completed:
-- Verified Windows version and build information using `winver`.
-- Identified the workstation hostname using `hostname`.
-- Collected operating system and hardware information using `systeminfo`.
-- Verified the current user identity using `whoami`.
-- Inspected Windows services using `services.msc`.
-- Identified a network adapter connectivity issue for further troubleshooting.
-
-**Skills demonstrated:** Windows diagnostics, system administration, service inspection, command-line troubleshooting, technical documentation.
+**Tools:** `winver`, `systeminfo`, `hostname`, `whoami`, PowerShell, Services.
 
 [View Lab 01 Documentation](docs/06-lab01-system-diagnostics.md)
 
 ### Lab 02 — Local User Account Administration
 
-**Service Request:** SR-002 — New Employee Account Provisioning
+Simulated employee onboarding by creating a standard Windows user account, verifying security group membership, testing sign-in, and confirming User Account Control restrictions.
 
-**Objective:** Provision a standard Windows user account and verify appropriate access restrictions.
-
-Activities completed:
-- Created local user account `jdoe` for simulated employee Jordan Doe.
-- Verified membership in the local Users group.
-- Confirmed that the account was not a member of Administrators.
-- Successfully tested interactive Windows sign-in.
-- Verified account identity using `whoami`.
-- Inspected security group memberships using `whoami /groups`.
-- Confirmed that User Account Control required administrator credentials for elevated access.
-
-**Outcome:** Successfully provisioned a standard user account following the principle of least privilege.
-
-**Skills demonstrated:** IAM, user provisioning, Windows security groups, access verification, UAC, service request documentation.
+**Skills:** User provisioning, local security groups, least privilege, UAC.
 
 [View Lab 02 Documentation](docs/07-lab02-user-account-administration.md)
 
-### Lab 03 — Windows File Permissions and Access Control
+### Lab 03 — File Permissions and Access Control
 
-**Incident:** INC-003 — Department Folder Access Denied
+Investigated a simulated Access Denied incident involving departmental files. Inspected NTFS permissions and inheritance, applied read-only access using `icacls`, and verified that unauthorized modifications were restricted.
 
-**Objective:** Diagnose and resolve an NTFS permissions issue affecting an employee's access to departmental files.
-
-Activities completed:
-- Created a test departmental folder at `C:\DepartmentFiles`.
-- Created a sample department policy document.
-- Inspected NTFS permissions and inheritance using Windows Advanced Security Settings.
-- Identified inherited Modify permissions assigned to Authenticated Users.
-- Configured restricted folder access to simulate an Access Denied incident.
-- Reproduced the access issue using the standard user account `jdoe`.
-- Investigated folder-level and file-level permissions using `icacls`.
-- Encountered and investigated an error when applying security changes.
-- Configured read-only access while preserving administrator and SYSTEM permissions.
-- Verified that the employee could read the policy document but could not save unauthorized modifications.
-
-**Key commands:**
-
-```cmd
-icacls "C:\DepartmentFiles"
-icacls "C:\DepartmentFiles\DepartmentPolicy.txt"
-icacls "C:\DepartmentFiles\DepartmentPolicy.txt" /grant "jdoe:(R)"
-```
-
-**Outcome:** Restored appropriate read-only access while maintaining the principle of least privilege.
-
-**Skills demonstrated:** NTFS permissions, access control lists (ACLs), permission inheritance, `icacls`, Windows security troubleshooting, incident resolution.
+**Skills:** NTFS permissions, ACLs, inheritance, access troubleshooting, least privilege.
 
 [View Lab 03 Documentation](docs/08-lab03-file-permissions.md)
 
+### Lab 04 — Windows Services and Event Viewer
+
+Simulated a Windows Search service interruption, investigated service status and relevant Service Control Manager events, and restored the service.
+
+**Skills:** Windows Services, Event Viewer, service recovery, incident troubleshooting.
+
+[View Lab 04 Documentation](docs/09-lab04-windows-services.md)
+
+### Lab 05 — Network Connectivity and DNS Troubleshooting
+
+Investigated a real network connectivity failure affecting the Windows 11 ARM64 virtual machine.
+
+Identified a USB NCM adapter failure (Code 10), tested VirtualBox network configurations, and diagnosed a missing VirtIO network driver (Code 28).
+
+Installed a compatible ARM64 NetKVM driver and verified successful network connectivity and DNS resolution using PowerShell.
+
+**Skills:** Network diagnostics, driver troubleshooting, VirtualBox networking, TCP/IP, DNS, PowerShell.
+
+[View Lab 05 Documentation](docs/10-lab05-network-troubleshooting.md)
+
 ## Incident and Service Request Tracking
 
-| Ticket | Type | Description | Status |
+| ID | Type | Description | Status |
 |---|---|---|---|
-| INC-001 | Incident | Windows network adapter connectivity issue | Open |
-| SR-002 | Service Request | New employee account provisioning | Resolved |
-| INC-003 | Incident | Department folder access denied | Resolved |
+| [INC-001](incident-reports/INC-001-network-adapter.md) | Incident | Windows network adapter connectivity failure | Resolved |
+| [SR-002](incident-reports/SR-002-user-provisioning.md) | Service Request | Standard user account provisioning | Resolved |
+| [INC-003](incident-reports/INC-003-folder-access-denied.md) | Incident | Department folder access denied | Resolved |
+| [INC-004](incident-reports/INC-004-windows-search-service.md) | Incident | Windows Search service interruption | Resolved |
 
-## Technical Skills Demonstrated
-
-**Windows Administration**
-- Windows 11 installation and configuration
-- Local user and group management
-- Windows service inspection
-- System diagnostics and troubleshooting
-
-**Identity and Access Management**
-- User account provisioning
-- Security group verification
-- Least-privilege access
-- User Account Control
-
-**File System Security**
-- NTFS permissions
-- Access control lists
-- Permission inheritance
-- Read-only access configuration
-- File access troubleshooting
-
-**IT Service Management**
-- Incident investigation
-- Service request fulfillment
-- Root cause analysis
-- Resolution verification
-- Technical documentation
-
-**Tools and Technologies**
-
-`Windows 11` · `VirtualBox` · `Command Prompt` · `Computer Management` · `Event Viewer` (planned) · `icacls` · `Git` · `GitHub`
+Each report documents the issue, investigation, corrective action, and verification.
 
 ## Repository Structure
 
@@ -158,40 +99,43 @@ windows-service-desk-lab/
 │   ├── 05-troubleshooting-labs.md
 │   ├── 06-lab01-system-diagnostics.md
 │   ├── 07-lab02-user-account-administration.md
-│   └── 08-lab03-file-permissions.md
+│   ├── 08-lab03-file-permissions.md
+│   ├── 09-lab04-windows-services.md
+│   └── 10-lab05-network-troubleshooting.md
 ├── incident-reports/
 │   ├── INC-001-network-adapter.md
 │   ├── SR-002-user-provisioning.md
-│   └── INC-003-folder-access-denied.md
+│   ├── INC-003-folder-access-denied.md
+│   └── INC-004-windows-search-service.md
 └── screenshots/
+    ├── lab01/
+    ├── lab02/
     ├── lab03/
-    │   ├── lab03-01-department-folder.png
-    │   ├── lab03-02-initial-file-permissions.png
-    │   ├── lab03-03-initial-folder-permissions.png
-    │   ├── lab03-04-permission-inheritance.png
-    │   ├── lab03-05-access-denied.png
-    │   ├── lab03-06-permission-configuration-error.png
-    │   ├── lab03-07-updated-ntfs-permissions.png
-    │   ├── lab03-08-icacls-investigation.png
-    │   ├── lab03-09-icacls-permission-fix.png
-    │   └── lab03-10-read-only-verification.png
-    └── [Lab 01 and Lab 02 evidence]
+    ├── lab04/
+    └── lab05/
 ```
 
-## Next Steps
+## Technical Skills Demonstrated
 
-### Lab 04 — Windows Services and Event Viewer Troubleshooting
+- **Windows Administration:** System diagnostics, local users, security groups, and Windows Services.
+- **Identity and Access Management:** User provisioning, access restrictions, and least-privilege permissions.
+- **File System Security:** NTFS permissions, ACL inheritance, and `icacls`.
+- **Network Troubleshooting:** Virtual adapters, driver errors, TCP/IP connectivity, and DNS resolution.
+- **Technical Tools:** PowerShell, Command Prompt, Device Manager, Event Viewer, and VirtualBox.
+- **IT Service Management:** Incident investigation, service requests, troubleshooting documentation, and resolution verification.
 
-Simulate a Windows service failure, investigate the issue using Event Viewer and Services, restore service functionality, and document the resolution.
+## Documentation and Security
 
-### Lab 05 — Network Connectivity and DNS Troubleshooting
+This is a personal learning environment. User identities and support scenarios are simulated unless explicitly identified as actual lab issues.
 
-Investigate Windows network configuration, IP addressing, DNS resolution, and connectivity issues using built-in diagnostic commands.
+Passwords, private IP addresses, sensitive network configuration, and personal credentials are excluded from published documentation.
 
-## Security and Documentation
+All troubleshooting results are supported by lab evidence and screenshots.
 
-All activities are performed in a controlled learning environment using simulated employee accounts and test resources.
+## Project Status
 
-No real employee credentials, passwords, or confidential organizational information are stored in this repository.
+**Phase 1 — Windows 11 Service Desk Fundamentals: Completed**
 
-Screenshots, command outputs, and incident reports are maintained as evidence of completed troubleshooting activities.
+Five practical labs and four incident/service request records have been completed.
+
+Future expansion may include Windows Server, Active Directory, Group Policy, and enterprise identity administration.
